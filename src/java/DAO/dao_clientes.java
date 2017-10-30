@@ -97,6 +97,31 @@ public class dao_clientes {
         return null;
 
     }
+    
+    public static List<ClientesDTO> MostrarClientesPorId(int id) {
+
+        List<ClientesDTO> clientes = new ArrayList<ClientesDTO>();
+        try {
+            String query = "select cod_cliente, nom_completo,direccion,sector,id_tipo,telefono FROM clientes where id="+id;
+            Connection conexion = Conexionsql.Conexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"), rs.getInt("id_tipo"));
+                clientes.add(detalles);
+
+            }
+
+            return clientes;
+
+        } catch (SQLException ex) {
+
+        }
+
+        return null;
+
+    }
 
     public static String MostrarTipoDeCliente(int id_tipo) {
 
@@ -143,6 +168,30 @@ public class dao_clientes {
         }
 
         return 0;
+
+    }
+       
+         public static String MostrarSIdClienteporNombre(String nombre) {
+
+        String tipo_cliente="";
+        try {
+            String query = "select cod_cliente FROM clientes where nom_completo='"+nombre+"'";
+            Connection conexion = Conexionsql.Conexion();
+            st = conexion.createStatement();
+            rs = st.executeQuery(query);
+
+            while (rs.next()) {
+
+                tipo_cliente=rs.getString("cod_cliente");
+            }
+
+            return tipo_cliente;
+
+        } catch (SQLException ex) {
+
+        }
+
+        return "no hay";
 
     }
     
@@ -192,13 +241,13 @@ public class dao_clientes {
 
         List<ClientesDTO> cliente = new ArrayList<ClientesDTO>();
         try {
-            String query = "select cod_cliente, nom_completo, direccion, sector, telefono FROM clientes where cod_cliente=" + cod;
+            String query = "select cod_cliente, nom_completo, direccion, sector, telefono, id_tipo FROM clientes where cod_cliente=" + cod;
             Connection conexion = Conexionsql.Conexion();
             st = conexion.createStatement();
             rs = st.executeQuery(query);
             while (rs.next()) {
 
-                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"));
+                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"), rs.getInt("id_tipo"));
                 cliente.add(detalles);
 
             }
@@ -247,8 +296,8 @@ public class dao_clientes {
 
             dao_clientes dao = new dao_clientes(conn);
             //List<TipoClientesDTO> detalles = dao_clientes.MostrarTipoDeCliente(1);
-           int cc=dao_clientes.MostrarIdClienteporNombre("SONIA CHI UC");
-           System.out.println(cc);
+          int id = dao.MostrarIdClienteporNombre("CYBER TRON");
+           System.out.println(id);
             // System.out.println(detalles.get(0).getTipo_cliente());
             //System.out.println(("Empleado1", "Colonia Nueva", "Pomuch", "981139962"));
 

@@ -204,7 +204,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="Clientes.jsp"><i class="fa fa-user-plus"></i>Nuevos Clientes</a></li>
-            <li><a href="ActualizarClientes.jsp"><i class="fa fa-user-times"></i>Actualizar Clientes</a></li>
+            <li><a href="ActualizarClients.jsp"><i class="fa fa-user-times"></i>Actualizar Clientes</a></li>
           </ul>
         </li>
 
