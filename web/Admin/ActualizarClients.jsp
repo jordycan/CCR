@@ -320,6 +320,7 @@
                                                                 <th>Localidad</th>
                                                                 <th>Telefono</th>
                                                                 <th>Tipo de Cliente</th>
+                                                                 <th>Corte</th>
                                                                 <th>Actualizar</th>
                                                             </tr>
                                                         </thead>
@@ -340,6 +341,7 @@
                                                                 <td><%=detalles.get(i).getSector()%></td>
                                                                 <td><%=detalles.get(i).getTelefono()%></td>
                                                                 <td><%=dao_clientes.MostrarTipoDeCliente(detalles.get(i).getId_tipo())%></td>
+                                                                <td><%=detalles.get(i).getCorte()%></td>
                                                                 <td>
                                                                     <a href="../ServletEliminarCliente?id_cliente=<%=detalles.get(i).getCod_cliente()%>"> <input type="submit" value="Eliminar" class="btn btn-danger"/></a> 
                                                                     <a href="EditarCliente.jsp?id_cliente=<%=detalles.get(i).getCod_cliente()%>"> <input type="submit" value="Editar" class="btn btn-info"/></a> 

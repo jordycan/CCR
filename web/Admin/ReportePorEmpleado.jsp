@@ -107,7 +107,7 @@
                                     }
 
                                     //<li><a href="login.jsp"></i> Iniciar Sesion</a>
-                                %>
+%>
 
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -233,8 +233,8 @@
                                 <li><a href="ReportePorMes.jsp">Reportes por Mes</a></li>
                                 <li><a href="ReportePorEmpleado.jsp">Reportes por Empleados</a></li>
                                 <li><a href="ReportePorEstado.jsp">Reportes por Estado de Pago</a></li>
-                               <li><a href="ReporteporMesPagado.jsp">Reportes por Mes y Localidad</a></li>
-                               <li><a href="ReporteporRango.jsp">Reportes por Rango de Fecha</a></li>
+                                <li><a href="ReporteporMesPagado.jsp">Reportes por Mes y Localidad</a></li>
+                                <li><a href="ReporteporRango.jsp">Reportes por Rango de Fecha</a></li>
                             </ul>
                         </li>
 
@@ -273,27 +273,47 @@
                                                 <div class="col-md-4">                    
 
                                                     <div class="form-group">
-                                                        <label for="mes">Empleado</label>
+                                                        <label for="nombre">Empleado</label>
                                                         <select class="form-control" name="nombre" id="mes">
 
-                                                            <%List<EmpleadoDTO> detalles = dao_empleado.MostrarEmpleado();
 
-                                                                for (int i = 0; i < detalles.size(); i++) {
-                                                            %>
 
-                                                                <option><%=detalles.get(i).getNom_completo()%></option>
-
-                                                               
-                                                                 <%
-                                                                }
-
-                                                            %>
+                                                            <option value="josue">Josue Cohuo</option>
+                                                            <option value="jordy">Jordy Manuel Can Uitz</option>
+                                                            <option value="rodolfo">Rodolfo Daniel Can Uc</option>
+                                                            <option value="roman">Roman Aguilar Velazquez</option>
+                                                            <option value="eliza">Elizabeth Can Uc</option>
                                                               </select>
 
 
                                                     </div>  
 
                                                 </div> 
+
+                                                <div class="col-md-4">                    
+
+                                                    <div class="form-group">
+
+                                                        <label for="fecha">Fecha 1</label>
+                                                        <input type="date" id="fecha1" name="fecha1" class="form-control" />
+
+                                                    </div>
+
+
+                                                </div> 
+
+                                                <div class="col-md-4">                    
+
+                                                    <div class="form-group">
+
+                                                        <label for="fecha">Fecha 2</label>
+                                                        <input type="date" id="fecha2" name="fecha2" class="form-control" />
+
+                                                    </div>
+
+
+                                                </div> 
+
 
 
                                                 <div class="col-md-2">                    
@@ -335,10 +355,10 @@
             </div>
             <!-- /.content-wrapper -->
 
-          
+
 
             <!-- Control Sidebar -->
-        
+
             <!-- /.control-sidebar -->
             <!-- Add the sidebar's background. This div must be placed
             immediately after the control sidebar -->

@@ -342,6 +342,23 @@
 
 
                                                 </div> 
+                                                
+                                                  <div class="col-md-4">                    
+
+                                                    <div class="form-group">
+                                                        <label for="corte">Corte</label>
+                                                        <select class="form-control" name="corte" id="corte">
+                                                                <option value="Primer Corte">Primer Corte</option>
+                                                                <option value="Segundo Corte">Segundo Corte</option>
+                                                               
+                                                              </select>
+
+                                                    </div>  
+
+
+
+                                                </div> 
+
 
                                                 <div class="col-md-2">                    
 

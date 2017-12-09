@@ -43,6 +43,7 @@ public class ServletEditarCliente extends HttpServlet {
             String sector=request.getParameter("sector");
             String telefono=request.getParameter("telefono");
             String id_cliente=request.getParameter("id_tipo");
+            String corte=request.getParameter("corte");
             int id_clientes=Integer.parseInt(id_cliente);
            
              Connection conn;
@@ -55,14 +56,14 @@ public class ServletEditarCliente extends HttpServlet {
                         
                          
                          
-			if(cliente.EditarCliente(id_empleado,nombre,direccion,sector,id_clientes,telefono)){
+			if(cliente.EditarCliente(id_empleado,nombre,direccion,sector,id_clientes,telefono,corte)){
                               
 				response.sendRedirect("Admin/ActualizarClientes.jsp");
 			}
                        
 			
-		}catch(SQLException e){
-                   
+		}catch(Exception e){
+                   System.out.println(e);
 		}
         }
     }

@@ -235,6 +235,9 @@ desired effect
             <li><a href="ReportePorEstado.jsp">Reportes por Estado de Pago</a></li>
            <li><a href="ReporteporMesPagado.jsp">Reportes por Mes y Localidad</a></li>
            <li><a href="ReporteporRango.jsp">Reportes por Rango de Fecha</a></li>
+           <li><a href="Recibos.jsp">Recibos</a></li>
+           <li><a href="ReporteCorte.jsp">Reporte por fecha de Corte</a></li>
+           <li><a href="ReporteCorteMesPagado.jsp">Reporte por Rango de Corte</a></li>
           </ul>
         </li>
 

@@ -32,10 +32,10 @@ public class dao_clientes {
 
     Connection conn;
 
-    private static final String insertarClientes = "insert into Clientes(nom_completo,direccion,sector,id_tipo,telefono) values(?,?,?,?,?)";
-    private static final String editarCliente = "update clientes set nom_completo=?,direccion=?,sector=?,id_tipo=?,telefono=? where cod_cliente=?";
+    private static final String insertarClientes = "insert into Clientes(nom_completo,direccion,sector,id_tipo,telefono,corte) values(?,?,?,?,?,?)";
+    private static final String editarCliente = "update clientes set nom_completo=?,direccion=?,sector=?,id_tipo=?,telefono=?,corte=? where cod_cliente=?";
 
-    public boolean RegistrarClientes(String nombre, String direccion, String sector,int id_tipo, String telefono) throws SQLException {
+    public boolean RegistrarClientes(String nombre, String direccion, String sector,int id_tipo, String telefono, String corte) throws SQLException {
 
         PreparedStatement pst = null;
         pst = conn.prepareStatement(insertarClientes);
@@ -44,6 +44,7 @@ public class dao_clientes {
         pst.setString(3, sector);
         pst.setInt(4, id_tipo);
         pst.setString(5, telefono);
+        pst.setString(6, corte);
 
         if (pst.executeUpdate() == 1) {
             return true;
@@ -52,7 +53,7 @@ public class dao_clientes {
         return false;
     }
 
-    public boolean EditarCliente(int cod_cliente, String nom_completo, String direccion, String sector,int id_tipo, String telefono) throws SQLException {
+    public boolean EditarCliente(int cod_cliente, String nom_completo, String direccion, String sector,int id_tipo, String telefono, String corte) throws SQLException {
 
         PreparedStatement pst = null;
         pst = conn.prepareStatement(editarCliente);
@@ -61,7 +62,9 @@ public class dao_clientes {
         pst.setString(3, sector);
         pst.setInt(4, id_tipo);
         pst.setString(5, telefono);
-        pst.setInt(6, cod_cliente);
+         pst.setString(6, corte);
+        pst.setInt(7, cod_cliente);
+       
 
         if (pst.executeUpdate() == 1) {
             return true;
@@ -77,13 +80,13 @@ public class dao_clientes {
 
         List<ClientesDTO> clientes = new ArrayList<ClientesDTO>();
         try {
-            String query = "select cod_cliente, nom_completo,direccion,sector,id_tipo,telefono FROM clientes";
+            String query = "select cod_cliente, nom_completo,direccion,sector,id_tipo,telefono,corte FROM clientes";
             Connection conexion = Conexionsql.Conexion();
             st = conexion.createStatement();
             rs = st.executeQuery(query);
             while (rs.next()) {
 
-                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"), rs.getInt("id_tipo"));
+                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"), rs.getInt("id_tipo"), rs.getString("corte"));
                 clientes.add(detalles);
 
             }
@@ -241,13 +244,13 @@ public class dao_clientes {
 
         List<ClientesDTO> cliente = new ArrayList<ClientesDTO>();
         try {
-            String query = "select cod_cliente, nom_completo, direccion, sector, telefono, id_tipo FROM clientes where cod_cliente=" + cod;
+            String query = "select cod_cliente, nom_completo, direccion, sector, telefono, id_tipo, corte FROM clientes where cod_cliente=" + cod;
             Connection conexion = Conexionsql.Conexion();
             st = conexion.createStatement();
             rs = st.executeQuery(query);
             while (rs.next()) {
 
-                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"), rs.getInt("id_tipo"));
+                ClientesDTO detalles = new ClientesDTO(rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getString("direccion"), rs.getString("sector"), rs.getString("telefono"), rs.getInt("id_tipo"), rs.getString("corte"));
                 cliente.add(detalles);
 
             }

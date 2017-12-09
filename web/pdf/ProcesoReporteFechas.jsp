@@ -22,6 +22,9 @@
             String datef2=dateformat.format(f2);
             java.sql.Date sqlDate2=java.sql.Date.valueOf(datef2);     
             String fechafinal2=sqlDate2.toString();
+    String mesPagado = request.getParameter("mes");
+     String localidad = request.getParameter("localidad");
+      String corte = request.getParameter("corte");
   //String Clinica=request.getParameter("clinica");
   //int numeroClinica=Integer.parseInt(Clinica);
   try{
@@ -31,6 +34,9 @@
   Map parametro=new HashMap();
   parametro.put("fecha1", fechafinal1);
   parametro.put("fecha2", fechafinal2);
+   parametro.put("corte", corte);
+  parametro.put("localidad", localidad);
+  parametro.put("mes", mesPagado);
   //parametro.put("fecha", Fecha);
   byte [] bit=JasperRunManager.runReportToPdf(reporte.getPath(),parametro,conn);
   response.setContentType("application/pdf");

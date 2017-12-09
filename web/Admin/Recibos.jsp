@@ -1,20 +1,23 @@
-<%-- 
-    Document   : RegistrarPagos
-    Created on : 13/09/2017, 05:09:33 PM
-    Author     : Sammy Guergachi <sguergachi at gmail.com>
+<%--
+    Document   : PagoCliente
+    Created on : 23/09/2017, 04:21:55 PM
+    Author     : Jordy Can
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="com.dto.CobroDTO"%>
+<%@page import="DAO.dao_ventas"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Registro de Pagos</title>
+        <title>Recibos</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
         <script src="autocompleter.js"></script>
@@ -110,7 +113,7 @@
                                     <!-- The user image in the navbar-->
                                     <img src="../imagenes/user.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Empleado</span>
+                                    <span class="hidden-xs">Daniel Can</span>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -119,12 +122,23 @@
                                         <img src="../imagenes/user.png" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Empleado
-
+                                            Ing. Daniel Can
+                                            <small> Jefe de ???</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="VerEmpleados.jsp">Empleados</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="VerClientes.jsp">Clientes</a>
+                                            </div>
 
+                                        </div>
+                                        <!-- /.row -->
+                                    </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -154,9 +168,9 @@
                             <img src="../imagenes/user.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Empleado</p>
+                            <p>Daniel Can</p>
                             <!-- Status -->
-                            <h6> <a><i class="fa fa-circle text-success"></i> Empleado</a></h6>
+                            <h6> <a><i class="fa fa-circle text-success"></i> Administrador</a></h6>
                         </div>
                     </div>
 
@@ -170,22 +184,58 @@
                         <!-- Optionally, you can add icons to the links -->
 
                         <li class="treeview">
-                            <a href="#"><i class="fa fa-user"></i> <span>Pagos</span>
+                            <a href="#"><i class="fa fa-user"></i> <span>Empleados</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="RegistrarPagos.jsp"><i class="fa fa-user-plus"></i>Registrar Pagos</a></li>
-                                <li><a href="PendientesDePago.jsp"><i class="fa fa-user-times"></i>Pendientes por Pagar</a></li>
-                                   <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Registro de Pagos</a></li>
+                                <li><a href="AgregarEmpleados.jsp"><i class="fa fa-user-plus"></i>Nuevos Empleados</a></li>
+                                <li><a href="ActualizarEmpleados.jsp"><i class="fa fa-user-times"></i>Actualizar Empleados</a></li>
                             </ul>
                         </li>
 
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-user-o"></i> <span>Clientes</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="Clientes.jsp"><i class="fa fa-user-plus"></i>Nuevos Clientes</a></li>
+                                <li><a href="ActualizarClientes.jsp"><i class="fa fa-user-times"></i>Actualizar Clientes</a></li>
+                            </ul>
+                        </li>
 
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-credit-card"></i> <span>Pagos</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="adeudos.jsp"><i class="fa fa-calendar"></i>Adeudos</a></li>
+                                <li><a href="PagoMes.jsp"><i class="fa fa-calendar"></i>Pagos por Mes</a></li>
+                                <li><a href="PagoCliente.jsp"><i class="fa fa-user-o"></i> Pagos por Clientes</a></li>
+                                <li><a href="PagoRangoFecha.jsp"><i class="fa fa-calendar-times-o"></i>Pagos por Rango de Fechas</a></li>
 
+                            </ul>
+                        </li>
 
-
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-file-pdf-o"></i> <span>Reportes</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="ReportePorMes.jsp">Reportes por Mes</a></li>
+                                <li><a href="ReportePorEmpleado.jsp">Reportes por Empleados</a></li>
+                                <li><a href="ReportePorEstado.jsp">Reportes por Estado de Pago</a></li>
+                                  <li><a href="ReporteporMesPagado.jsp">Reportes por Mes y Localidad</a></li>
+                                  <li><a href="ReporteporRango.jsp">Reportes por Rango de Fecha</a></li>
+                            </ul>
+                        </li>
 
                     </ul>
                     <!-- /.sidebar-menu -->
@@ -196,14 +246,7 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>
-                        Conexiones del Camino Real
-                        <br>
-                        <small>Sistema de control de Clientes y Pagos</small>
-                    </h1>
 
-                </section>
 
                 <!-- Main content -->
                 <section class="content container-fluid">
@@ -211,7 +254,7 @@
                     <div id="page-wrapper">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">Registro De Pagos</h1>
+                                <h1 class="page-header">Recibos</h1>
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
@@ -220,14 +263,13 @@
                             <div class="col-lg-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        Nuevo Registro
+                                        Recibos
                                     </div>
                                     <div class="panel-body">
-                                        <form action="ServletPagos" method="post">
+                                        <form action="../pdf/ProcesoRecibo.jsp" method="post">
                                             <div class="row">
 
-
-                                                <div class="col-md-4">                    
+                                                <div class="col-md-4">
 
                                                     <div class="form-group">
 
@@ -237,39 +279,49 @@
                                                     </div>
 
 
-                                                </div> 
-
-
-
-
-
-                                                <div class="col-md-4">                    
-
-                                                    <div class="form-group">
-                                                        <label for="usuario">Fecha de Pago</label>
-                                                        <input type="date" name="fecha" maxlength="30" id="fecha" class="form-control" step="1" min="2017-01-01" max="2018-01-01" >
-                                                    </div>  
-
-
                                                 </div>
-
-                                                <div class="col-md-4">                    
+                                                
+                                                 <div class="col-md-4">
 
                                                     <div class="form-group">
-                                                        <label for="cantidad">Cantidad</label>
-                                                        <input type="text" name="cantidad" maxlength="30" id="cantidad" class="form-control" >
-                                                    </div>  
+
+                                                        <label for="folio">Folio</label>
+                                                        <input type="text" id="folio" name="folio" class="form-control" />
+
+                                                    </div>
 
 
                                                 </div>
                                                 
-                                                
-
-                                                 <div class="col-md-4">                    
+                                                 <div class="col-md-4">
 
                                                     <div class="form-group">
-                                                        <label for="sector">Mes Pagado</label>
-                                                        <select class="form-control" name="mesPagado" id="mesPagado">
+
+                                                        <label for="seguro">Seguro</label>
+                                                        <input type="text" id="seguro" name="seguro" class="form-control" />
+
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                 <div class="col-md-4">
+
+                                                    <div class="form-group">
+
+                                                        <label for="seguro">Descuento</label>
+                                                        <input type="text" id="descuento" name="descuento" class="form-control" />
+
+                                                    </div>
+
+
+                                                </div>
+                                                
+                                                  <div class="col-md-4">                    
+
+                                                    <div class="form-group">
+                                                        <label for="mes">Mes</label>
+                                                        <select class="form-control" name="mes" id="mesPagado">
                                                                 <option value="Enero">Enero</option>
                                                                 <option value="Febrero">Febreo</option>
                                                                 <option value="Marzo">Marzo</option>
@@ -292,24 +344,16 @@
                                                 </div> 
 
 
-
-
-
-
-                                                <div class="col-md-2">                    
+                                                <div class="col-md-2">
 
                                                     <div class="form-group">
                                                         <br>
-                                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                                        <button type="submit" class="btn btn-primary">Generar</button>
 
-                                                    </div>  
-
-
-                                                </div> 
+                                                    </div>
 
 
-
-
+                                                </div>
 
 
 
@@ -317,13 +361,8 @@
 
                                                 <!-- /.col-lg-6 (nested) -->
                                             </div>
-                                            <%                                                if (request.getAttribute("validaciones") != null) {
-                                            %>
-                                            <div class="alert alert-danger alert-dismissable fade in">
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>Error!</strong>   ${requestScope.validaciones}
-                                            </div>
-                                            <%}%>
+
+                                          
                                         </form>
 
                                         <!-- /.row (nested) -->
@@ -338,7 +377,6 @@
                         </div>
                         <!-- /.row -->
                     </div>
-
 
                 </section>
                 <!-- /.content -->
@@ -356,18 +394,15 @@
             </footer>
 
             <!-- Control Sidebar -->
-           
+          
+            <!-- /.control-sidebar -->
             <!-- Add the sidebar's background. This div must be placed
             immediately after the control sidebar -->
-            
+            <div class="control-sidebar-bg"></div>
         </div>
         <!-- ./wrapper -->
 
         <!-- REQUIRED JS SCRIPTS -->
-
-        <!-- jQuery 3 -->
-
-        <!-- Bootstrap 3.3.7 -->
         <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- AdminLTE App -->
 

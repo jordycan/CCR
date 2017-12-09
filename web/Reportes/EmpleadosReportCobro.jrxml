@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2017-10-08T21:04:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EmpleadosReportCobro" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="373c5dcb-e2bb-4f6d-94b8-bf5cbd595457">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CCR"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="empleado" class="java.lang.String"/>
+	<parameter name="fecha1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select id_venta,cod_cliente,nom_completo,fecha,estado,mesPagado,cantidad,adeudo,empleado from ventas where empleado =   $P{empleado}]]>
+		<![CDATA[select id_venta,cod_cliente,nom_completo,fecha,estado,mesPagado,cantidad,adeudo,empleado from ventas where empleado =   $P{empleado} and fecha between $P{fecha1} and $P{fecha2}]]>
 	</queryString>
-	<field name="id_venta" class="java.lang.Long"/>
-	<field name="cod_cliente" class="java.lang.Long"/>
-	<field name="nom_completo" class="java.lang.String"/>
-	<field name="fecha" class="java.sql.Date"/>
-	<field name="estado" class="java.lang.String"/>
-	<field name="mesPagado" class="java.lang.String"/>
-	<field name="cantidad" class="java.lang.Integer"/>
-	<field name="adeudo" class="java.lang.Integer"/>
-	<field name="empleado" class="java.lang.String"/>
+	<field name="id_venta" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_cliente" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nom_completo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mesPagado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adeudo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="totalAdeudo" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{adeudo}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>

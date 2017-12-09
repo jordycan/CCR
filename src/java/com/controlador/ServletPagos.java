@@ -45,84 +45,68 @@ public class ServletPagos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            
-            String validaciones="";
+            String validaciones = "";
             String nombre = request.getParameter("search");
             String c = request.getParameter("cantidad");
             String mesPagado = request.getParameter("mesPagado");
-            int cantidad=Integer.parseInt(c);
-            String estado="";
+            int cantidad = Integer.parseInt(c);
+            String estado = "";
             String f = request.getParameter("fecha");
             HttpSession sesion = request.getSession();
             String usuario;
             usuario = sesion.getAttribute("user").toString();
-            
+
             Connection con;
 
-        
             usuario = sesion.getAttribute("user").toString();
-            
-          
-            
-          
 
             try {
-              
-                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date parsed = format.parse(f);
-            java.sql.Date fecha = new java.sql.Date(parsed.getTime());
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date parsed = format.parse(f);
+                java.sql.Date fecha = new java.sql.Date(parsed.getTime());
                 int tipo_de_cliente;
-            
+
                 con = ConexionMySQL.getConexionUnica("localhost", "Conexiones_Camino_Real", "root", "root");
-               
-                dao_clientes clientes=new dao_clientes(con);
-                tipo_de_cliente=dao_clientes.MostrarTipoPorNombre(nombre);
+
+                dao_clientes clientes = new dao_clientes(con);
+                tipo_de_cliente = dao_clientes.MostrarTipoPorNombre(nombre);
                 dao_ventas venta = new dao_ventas(con);
-                
+
                 Pagos pag = new Pagos();
-                
-                                                int cf=dao_clientes.MostrarIdClienteporNombre(nombre);
-                                                DecimalFormat df = new DecimalFormat("00000000");             
-                                                df.format(cf);
+
+                int cf = dao_clientes.MostrarIdClienteporNombre(nombre);
+                DecimalFormat df = new DecimalFormat("00000000");
+                df.format(cf);
 
                 int a = pag.adeudo(tipo_de_cliente, cantidad);
                 String status = pag.statusDePago(tipo_de_cliente, cantidad);
-                
-                
-                if(cantidad<=250 && tipo_de_cliente==1){
-                    venta.RegistrarVenta(cf, nombre, fecha, status,mesPagado, cantidad,a,usuario);
+
+                if (cantidad <= 250 && tipo_de_cliente == 1) {
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }
-                else if(cantidad<=500 && tipo_de_cliente==2){
-                    
-                    venta.RegistrarVenta(cf, nombre, fecha, status,mesPagado, cantidad,a,usuario);
+                } else if (cantidad <= 500 && tipo_de_cliente == 2) {
+
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }
-                else if(cantidad<=1000 && tipo_de_cliente==3){
-                    venta.RegistrarVenta(cf, nombre, fecha, status,mesPagado, cantidad,a,usuario);
+                } else if (cantidad <= 1000 && tipo_de_cliente == 3) {
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }
-                 else if(cantidad<=400 && tipo_de_cliente==4){
-                    venta.RegistrarVenta(cf, nombre, fecha, status,mesPagado, cantidad,a,usuario);
+                } else if (cantidad <= 400 && tipo_de_cliente == 4) {
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }
-                 else if(cantidad<=350 && tipo_de_cliente==5){
-                    venta.RegistrarVenta(cf, nombre, fecha, status,mesPagado, cantidad,a,usuario);
+                } else if (cantidad <= 350 && tipo_de_cliente == 5) {
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }
-                   else if(cantidad<=700 && tipo_de_cliente==6){
-                    venta.RegistrarVenta(cf, nombre, fecha, status,mesPagado, cantidad,a,usuario);
+                } else if (cantidad <= 700 && tipo_de_cliente == 6) {
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }
-            
-                else{
-                    validaciones+="El pago es incorrecto";
+                } else {
+                    validaciones += "El pago es incorrecto";
                     request.setAttribute("validaciones", validaciones);
                     request.getRequestDispatcher("RegistrarPagos.jsp").forward(request, response);
 
                 }
-               
-                
 
             } catch (Exception e) {
                 Logger.getLogger(ServletPagos.class.getName()).log(Level.SEVERE, null, e);

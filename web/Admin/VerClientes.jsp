@@ -289,6 +289,7 @@
                                                 <th>Sector</th>
                                                 <th>Telefono</th>
                                                 <th>Tipo</th>
+                                                <th>Corte</th>
 
                                             </tr>
                                         </thead>
@@ -305,6 +306,7 @@
                                                 <td><%=detalles.get(i).getSector()%></td>
                                                 <td><%=detalles.get(i).getTelefono()%></td>
                                                 <td><%=detalles.get(i).getId_tipo()%></td>
+                                                <td><%=detalles.get(i).getCorte()%></td>
 
                                             </tr>
                                             <%

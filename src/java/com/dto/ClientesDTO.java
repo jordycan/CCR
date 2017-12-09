@@ -18,6 +18,7 @@ public class ClientesDTO {
     private String sector;
     private String telefono;
     private int id_tipo;
+    private String corte;
     
     public ClientesDTO(int cod_cliente, String nom_completo, String direccion, String sector, String telefono) {
         this.cod_cliente = cod_cliente;
@@ -27,6 +28,18 @@ public class ClientesDTO {
         this.telefono = telefono;
     }
 
+    public ClientesDTO(int cod_cliente, String nom_completo, String direccion, String sector, String telefono, int id_tipo, String corte) {
+        this.cod_cliente = cod_cliente;
+        this.nom_completo = nom_completo;
+        this.direccion = direccion;
+        this.sector = sector;
+        this.telefono = telefono;
+        this.id_tipo = id_tipo;
+        this.corte = corte;
+    }
+    
+    
+    
     public ClientesDTO(int cod_cliente) {
         this.cod_cliente = cod_cliente;
     }
@@ -90,6 +103,15 @@ public class ClientesDTO {
     public void setId_tipo(int id_tipo) {
         this.id_tipo = id_tipo;
     }
+
+    public String getCorte() {
+        return corte;
+    }
+
+    public void setCorte(String corte) {
+        this.corte = corte;
+    }
+    
     
     
 }

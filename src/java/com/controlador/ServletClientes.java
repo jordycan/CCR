@@ -44,6 +44,7 @@ public class ServletClientes extends HttpServlet {
             String sector=request.getParameter("sector");
             String telefono=request.getParameter("telefono");
             String id_tipo=request.getParameter("tipo_cliente");
+            String corte=request.getParameter("corte");
             int id=Integer.parseInt(id_tipo);
             String validacion="";
             
@@ -56,7 +57,7 @@ public class ServletClientes extends HttpServlet {
                 
                 dao_clientes cliente = new dao_clientes(con);
                 
-                if(cliente.RegistrarClientes(nombre,direccion,sector,id,telefono)){
+                if(cliente.RegistrarClientes(nombre,direccion,sector,id,telefono,corte)){
                     validacion="Registro exitoso";
                     request.getSession().setAttribute("validar_cliente", validacion);
                     response.sendRedirect("Admin/Clientes.jsp");
