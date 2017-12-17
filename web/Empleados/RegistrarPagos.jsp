@@ -178,7 +178,7 @@
                             <ul class="treeview-menu">
                                 <li><a href="RegistrarPagos.jsp"><i class="fa fa-user-plus"></i>Registrar Pagos</a></li>
                                 <li><a href="PendientesDePago.jsp"><i class="fa fa-user-times"></i>Pendientes por Pagar</a></li>
-                                   <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Registro de Pagos</a></li>
+                                   <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Historial de Pagos</a></li>
                             </ul>
                         </li>
 
@@ -258,6 +258,16 @@
                                                     <div class="form-group">
                                                         <label for="cantidad">Cantidad</label>
                                                         <input type="text" name="cantidad" maxlength="30" id="cantidad" class="form-control" >
+                                                    </div>  
+
+
+                                                </div>
+                                                
+                                                  <div class="col-md-4">                    
+
+                                                    <div class="form-group">
+                                                        <label for="descuento">Descuento</label>
+                                                        <input type="text" name="descuento" maxlength="30" id="descuento" class="form-control" >
                                                     </div>  
 
 

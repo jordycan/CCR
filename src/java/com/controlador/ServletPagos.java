@@ -49,7 +49,14 @@ public class ServletPagos extends HttpServlet {
             String nombre = request.getParameter("search");
             String c = request.getParameter("cantidad");
             String mesPagado = request.getParameter("mesPagado");
+            int pago = Integer.parseInt(c);
             int cantidad = Integer.parseInt(c);
+            
+            String d = request.getParameter("descuento");
+            int descuento = Integer.parseInt(d);
+            
+            cantidad=cantidad+descuento;
+            
             String estado = "";
             String f = request.getParameter("fecha");
             HttpSession sesion = request.getSession();
@@ -83,23 +90,23 @@ public class ServletPagos extends HttpServlet {
                 String status = pag.statusDePago(tipo_de_cliente, cantidad);
 
                 if (cantidad <= 250 && tipo_de_cliente == 1) {
-                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, pago, a, usuario,descuento);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else if (cantidad <= 500 && tipo_de_cliente == 2) {
 
-                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, pago, a, usuario,descuento);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else if (cantidad <= 1000 && tipo_de_cliente == 3) {
-                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, pago, a, usuario,descuento);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else if (cantidad <= 400 && tipo_de_cliente == 4) {
-                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, pago, a, usuario,descuento);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else if (cantidad <= 350 && tipo_de_cliente == 5) {
-                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, pago, a, usuario,descuento);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else if (cantidad <= 700 && tipo_de_cliente == 6) {
-                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, cantidad, a, usuario);
+                    venta.RegistrarVenta(cf, nombre, fecha, status, mesPagado, pago, a, usuario,descuento);
                     request.getRequestDispatcher("Principal.jsp").forward(request, response);
                 } else {
                     validaciones += "El pago es incorrecto";

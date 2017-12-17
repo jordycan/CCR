@@ -200,7 +200,7 @@
                             <ul class="treeview-menu">
                                 <li><a href="RegistrarPagos.jsp"><i class="fa fa-user-plus"></i>Registrar Pagos</a></li>
                                 <li><a href="PendientesDePago.jsp"><i class="fa fa-user-times"></i>Pendientes por Pagar</a></li>
-                                   <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Registro de Pagos</a></li>
+                                   <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Historial de Pagos</a></li>
                             </ul>
                         </li>
 
@@ -220,8 +220,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                      Actualizar Pago
-                        <small>Pendientes de Pago</small>
+                      Pagos
+                        <small>Pagos por mes</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="Principal.jsp"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -311,6 +311,7 @@
                                                                 <th>Estado de Pago</th>
                                                                 <th>Cantidad Pagada</th>
                                                                 <th>Adeudo</th>
+                                                                <th>Descuento</th>
                                                                
 
                                                             </tr>
@@ -333,8 +334,8 @@
                                                                 <td><%=detalles.get(i).getEstado()%></td>
                                                                 <td><%=detalles.get(i).getCantidad()%></td>
                                                                 <td><%=detalles.get(i).getAdeudo()%></td>
-                                                              
-
+                                                                 <td><%=detalles.get(i).getDescuento()%></td>
+                                                                
                                                             </tr>
                                                             <%
 

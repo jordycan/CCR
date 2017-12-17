@@ -316,6 +316,7 @@
                                                                 <th>Cantidad Pagada</th>
                                                                 <th>Adeudo</th>
                                                                 <th>Empleado que cobro</th>
+                                                                <th>Descuento</th>
 
                                                             </tr>
                                                         </thead>
@@ -336,6 +337,7 @@
                                                                 <td><%=detalles.get(i).getCantidad()%></td>
                                                                 <td><%=detalles.get(i).getAdeudo()%></td>
                                                                 <td><%=detalles.get(i).getEmpleado()%></td>
+                                                                <td><%=detalles.get(i).getDescuento()%></td>
 
                                                             </tr>
                                                             <%

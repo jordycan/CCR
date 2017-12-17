@@ -39,7 +39,7 @@ public class dao_ventas {
     static Statement st = null;
     static ResultSet rs = null;
 
-    private static final String registrarVenta = "insert into ventas(cod_cliente,nom_completo,fecha,estado,mesPagado,cantidad,adeudo,empleado) values(?,?,?,?,?,?,?,?)";
+    private static final String registrarVenta = "insert into ventas(cod_cliente,nom_completo,fecha,estado,mesPagado,cantidad,adeudo,empleado,descuento) values(?,?,?,?,?,?,?,?,?)";
     private static final String editarPago = "update ventas set fecha=?,mesPagado=?,cantidad=?,estado=?,adeudo=? where id_venta=?";
 
     public boolean EditarCobro(int id_venta,String mesPagado, Date fecha, int cantidad, String estado, int adeudo) throws SQLException {
@@ -60,7 +60,7 @@ public class dao_ventas {
         return false;
     }
 
-    public boolean RegistrarVenta(int cod_cliente, String nom_completo, Date fecha, String estado,String mesPagado, int cantidad, int adeudo, String empleado) throws SQLException {
+    public boolean RegistrarVenta(int cod_cliente, String nom_completo, Date fecha, String estado,String mesPagado, int cantidad, int adeudo, String empleado,int descuento) throws SQLException {
 
         PreparedStatement pst = null;
         pst = conn.prepareStatement(registrarVenta);
@@ -72,6 +72,7 @@ public class dao_ventas {
         pst.setInt(6, cantidad);
         pst.setInt(7, adeudo);
         pst.setString(8, empleado);
+        pst.setInt(9, descuento);
 
         if (pst.executeUpdate() == 1) {
             return true;
@@ -115,7 +116,7 @@ public class dao_ventas {
             rs = st.executeQuery(query);
             while (rs.next()) {
 
-                CobroDTO detalles = new CobroDTO(rs.getInt("id_venta"), rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getDate("fecha"), rs.getString("estado"),rs.getString("mesPagado"), rs.getInt("cantidad"), rs.getInt("adeudo"), rs.getString("empleado"));
+                CobroDTO detalles = new CobroDTO(rs.getInt("id_venta"), rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getDate("fecha"), rs.getString("estado"),rs.getString("mesPagado"), rs.getInt("cantidad"), rs.getInt("adeudo"), rs.getString("empleado"), rs.getInt("descuento"));
                 cliente.add(detalles);
 
             }
@@ -209,13 +210,13 @@ public class dao_ventas {
 
         List<CobroDTO> cliente = new ArrayList<CobroDTO>();
         try {
-            String query = "select id_venta,cod_cliente,nom_completo,fecha,estado,cantidad,mesPagado,adeudo,empleado from ventas where nom_completo='" + nombre + "'";
+            String query = "select id_venta,cod_cliente,nom_completo,fecha,estado,cantidad,mesPagado,adeudo,empleado,descuento from ventas where nom_completo='" + nombre + "'";
             Connection conexion = Conexionsql.Conexion();
             st = conexion.createStatement();
             rs = st.executeQuery(query);
             while (rs.next()) {
 
-                CobroDTO detalles = new CobroDTO(rs.getInt("id_venta"), rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getDate("fecha"), rs.getString("estado"),rs.getString("mesPagado"), rs.getInt("cantidad"), rs.getInt("adeudo"), rs.getString("empleado"));
+                CobroDTO detalles = new CobroDTO(rs.getInt("id_venta"), rs.getInt("cod_cliente"), rs.getString("nom_completo"), rs.getDate("fecha"), rs.getString("estado"),rs.getString("mesPagado"), rs.getInt("cantidad"), rs.getInt("adeudo"), rs.getString("empleado"), rs.getInt("descuento"));
                 cliente.add(detalles);
 
             }
@@ -274,7 +275,7 @@ public class dao_ventas {
                             int pago=400;
                     int adeudo=pa.adeudo(2, pago);
                     String estado=pa.statusDePago(2, pago);
-            System.out.println(dao.RegistrarVenta(0000000002,"Jordy Manuel Can Uitz",fecha,estado,"Diciembre",pago,adeudo,"jordycan"));
+           // System.out.println(dao.RegistrarVenta(0000000002,"Jordy Manuel Can Uitz",fecha,estado,"Diciembre",pago,adeudo,"jordycan"));
         } catch (SQLException ex) {
             Logger.getLogger(dao_usuarios.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {

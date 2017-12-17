@@ -179,7 +179,7 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="RegistrarPagos.jsp"><i class="fa fa-user-plus"></i>Pagos</a></li>
             <li><a href="PendientesDePago.jsp"><i class="fa fa-user-times"></i>Pendientes de Pago</a></li>
-            <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Registro de Pagos</a></li>
+            <li><a href="RegistroDePagos.jsp"><i class="fa fa-user-times"></i>Historial de Pagos</a></li>
           </ul>
         </li>
 

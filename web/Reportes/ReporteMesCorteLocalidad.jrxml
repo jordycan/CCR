@@ -96,7 +96,7 @@
 				<textField>
 					<reportElement x="140" y="70" width="270" height="30" uuid="e253e457-505f-4d9f-bb9c-83701d621ff7"/>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA["Reportes del mes "+$P{mes}+ " del "+$P{fecha1}+ " al "+$P{fecha2}+" de la localidad de "+$P{localidad}+" y "+$P{corte}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Reportes del mes "+$P{mes}+ " del "+$P{fechafinal1}+ " al "+$P{fechafinal2}+" de la localidad de "+$P{localidad}+" y "+$P{corte}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

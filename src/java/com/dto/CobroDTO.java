@@ -23,6 +23,7 @@ public class CobroDTO {
     private int cantidad;
     private int adeudo;
     private String empleado;
+    private int descuento;
 
     public CobroDTO(int id_venta, int cod_cliente, String nom_completo, Date fecha, String estado, String mesPagado, int cantidad, int adeudo, String empleado) {
         this.id_venta = id_venta;
@@ -35,6 +36,21 @@ public class CobroDTO {
         this.adeudo = adeudo;
         this.empleado = empleado;
     }
+
+    public CobroDTO(int id_venta, int cod_cliente, String nom_completo, Date fecha, String estado, String mesPagado, int cantidad, int adeudo, String empleado, int descuento) {
+        this.id_venta = id_venta;
+        this.cod_cliente = cod_cliente;
+        this.nom_completo = nom_completo;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.mesPagado = mesPagado;
+        this.cantidad = cantidad;
+        this.adeudo = adeudo;
+        this.empleado = empleado;
+        this.descuento = descuento;
+    }
+    
+    
 
   
 
@@ -119,6 +135,14 @@ public class CobroDTO {
 
     public void setMesPagado(String mesPagado) {
         this.mesPagado = mesPagado;
+    }
+
+    public int getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
     }
 
     
