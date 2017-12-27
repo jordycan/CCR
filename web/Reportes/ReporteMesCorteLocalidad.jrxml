@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="99a6bfe8-e632-4aba-af23-aa8a528a2a3e">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CCR"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.3310000000000008"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fechafinal2" class="java.lang.String">
@@ -61,6 +61,14 @@
 	<field name="empleado" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<variable name="totalA" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{adeudo}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalC" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -257,9 +265,26 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="30" splitType="Stretch"/>
 	</columnFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="313" y="0" width="32" height="19" uuid="8e5b7de1-6f7c-4006-a669-feda990f7b38"/>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="1" width="30" height="30" uuid="16fd9fb6-c18a-4a10-a527-3d374a353b65"/>
+				<textFieldExpression><![CDATA[$V{totalA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="1" width="33" height="30" uuid="f8667f94-0ae2-4f2d-b653-d2955285714e"/>
+				<textFieldExpression><![CDATA[$V{totalC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="0" width="32" height="19" uuid="79e19859-353d-4607-8a02-bd6ec6aac1fc"/>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

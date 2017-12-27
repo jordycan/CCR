@@ -338,6 +338,16 @@
 
 
                                                 </div>
+                                                    
+                                                      <div class="col-md-4">                    
+
+                                                    <div class="form-group">
+                                                        <label for="cantidad">Descuento</label>
+                                                        <input type="text" name="descuento" maxlength="30" id="descuento" class="form-control" >
+                                                    </div>  
+
+
+                                                </div>
 
                                              
                                                 

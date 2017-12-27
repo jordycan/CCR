@@ -40,9 +40,9 @@ public class dao_ventas {
     static ResultSet rs = null;
 
     private static final String registrarVenta = "insert into ventas(cod_cliente,nom_completo,fecha,estado,mesPagado,cantidad,adeudo,empleado,descuento) values(?,?,?,?,?,?,?,?,?)";
-    private static final String editarPago = "update ventas set fecha=?,mesPagado=?,cantidad=?,estado=?,adeudo=? where id_venta=?";
+    private static final String editarPago = "update ventas set fecha=?,mesPagado=?,cantidad=?,estado=?,adeudo=?,descuento=? where id_venta=?";
 
-    public boolean EditarCobro(int id_venta,String mesPagado, Date fecha, int cantidad, String estado, int adeudo) throws SQLException {
+    public boolean EditarCobro(int id_venta,String mesPagado, Date fecha, int cantidad, String estado, int adeudo,int descuento) throws SQLException {
 
         PreparedStatement pst = null;
         pst = conn.prepareStatement(editarPago);
@@ -51,7 +51,8 @@ public class dao_ventas {
         pst.setInt(3, cantidad);
         pst.setString(4, estado);
         pst.setInt(5, adeudo);
-        pst.setInt(6, id_venta);
+         pst.setInt(6, descuento);
+        pst.setInt(7, id_venta);
 
         if (pst.executeUpdate() == 1) {
             return true;

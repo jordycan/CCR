@@ -48,7 +48,9 @@ public class ServletEditarPago extends HttpServlet {
             int cantidad = Integer.parseInt(c);
             String mesPagado=request.getParameter("mesPagado");
             String nombre = request.getParameter("nombre");
-
+            String d = request.getParameter("descuento");
+            int descuento = Integer.parseInt(d);
+            cantidad = cantidad+descuento;
             Connection conn;
 
             try {
@@ -69,25 +71,25 @@ public class ServletEditarPago extends HttpServlet {
                 String status = pag.statusDePago(tipo_de_cliente, cantidad);
 
                 if (cantidad <= 250 && tipo_de_cliente == 1) {
-                    ventas.EditarCobro(id,mesPagado, fecha,cantidad, status, a);
+                    ventas.EditarCobro(id,mesPagado, fecha,cantidad, status, a,descuento);
                     request.getRequestDispatcher("PendientesDePago.jsp").forward(request, response);
                 } else if (cantidad <= 500 && tipo_de_cliente == 2) {
-                    ventas.EditarCobro(id, mesPagado,fecha, cantidad, status, a);
+                    ventas.EditarCobro(id, mesPagado,fecha, cantidad, status, a,descuento);
                       request.getRequestDispatcher("PendientesDePago.jsp").forward(request, response);
                 } else if (cantidad <= 1000 && tipo_de_cliente == 3) {
-                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a);
+                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a,descuento);
                     request.getRequestDispatcher("PendientesDePago.jsp").forward(request, response);
                 }
                 else if (cantidad <= 400 && tipo_de_cliente == 4) {
-                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a);
+                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a,descuento);
                     request.getRequestDispatcher("PendientesDePago.jsp").forward(request, response);
                 }
                   else if (cantidad <= 350 && tipo_de_cliente == 5) {
-                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a);
+                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a,descuento);
                     request.getRequestDispatcher("PendientesDePago.jsp").forward(request, response);
                 }
                     else if (cantidad <= 700 && tipo_de_cliente == 6) {
-                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a);
+                    ventas.EditarCobro(id,mesPagado, fecha, cantidad, status, a,descuento);
                     request.getRequestDispatcher("PendientesDePago.jsp").forward(request, response);
                 }
                 else {
